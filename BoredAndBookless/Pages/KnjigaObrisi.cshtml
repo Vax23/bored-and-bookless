@@ -1,0 +1,50 @@
+﻿@page
+@model BoredAndBookless.Pages.KnjigaObrisiModel
+@{
+    ViewData["Title"] = "Brisanje knjige";
+}
+
+<style>
+    body {
+        background-color: #E6E5E5;
+    }
+</style>
+
+@if (SessionClass.TipKorisnika == "A")
+{
+    <form method="post">
+        <div class="container register-form">
+            <div class="form">
+                <div class="note">
+                    <p>Obrisi knjigu</p>
+                </div>
+
+                <div class="form-content">
+                    <div style="text-align:center;">
+                        <div>
+                            <h3 style="color: #56493E;">Da li ste sigurni da želite da obrišete knjigu?</h3>
+                        </div>
+                    </div>
+
+                    <div class="form-group" style="text-align: center; padding: 5%">
+                        <button type="submit" class="btnSubmit">Da</button>
+                        <a asp-page="./BibliotekaSve" class="btn btnSubmit">Ne</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </form>
+}
+else
+{
+    <div class="alert alert-danger" role="alert" style="text-align: center;"><i class="fas fa-exclamation-triangle"></i> Nemate pristup ovoj stranici, samo admin može da obriše knjigu. <i class="fas fa-exclamation-triangle"></i></div>}
+
+@if (Model.Provera == 1)
+{
+    <div class="prijava">
+        <div class="alert alert-danger" role="alert" style="text-align: center;">
+            <i class="fas fa-exclamation-triangle"></i> Ne mozete da obrisete <i class="fas fa-exclamation-triangle"></i>
+        </div>
+    </div>
+}

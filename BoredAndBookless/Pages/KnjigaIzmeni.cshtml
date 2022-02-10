@@ -1,0 +1,53 @@
+﻿@page
+@model BoredAndBookless.Pages.KnjigaIzmaniModel
+@{
+    ViewData["Title"] = "Izmena knjige";
+}
+
+<style>
+    body {
+        background-color: #E6E5E5;
+    }
+</style>
+
+@if (SessionClass.TipKorisnika == "A")
+{
+    <form method="post">
+
+        <div class="container register-form">
+            <div class="form">
+                <div class="note">
+                    <p>Izmeni knjigu</p>
+                </div>
+
+                <div class="form-content">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Naziv" asp-for="TrenutnaKnjiga.Naziv" required autofocus />
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Grad" asp-for="TrenutnaKnjiga.Zanr" required />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Opis" asp-for="TrenutnaKnjiga.Autor" required />
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Opis" asp-for="TrenutnaKnjiga.Opis" required />
+                            </div>
+                        </div>
+                    </div>
+                    <div style="text-align:center">
+                        <button type="submit" class="btnSubmit">Sačuvaj izmene</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+}
+else
+{
+    <div class="alert alert-danger" role="alert" style="text-align: center;"><i class="fas fa-exclamation-triangle"></i> Nemate pristup ovoj stranici, samo admin može da menja knjige. <i class="fas fa-exclamation-triangle"></i></div>
+}

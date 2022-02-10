@@ -1,0 +1,48 @@
+﻿@page
+@model BoredAndBookless.Pages.RezervacijaOtkaziModel
+@{
+    ViewData["Title"] = "Otkazivanje iznajmljivanja";
+}
+
+<style>
+    body {
+        background-color: #E6E5E5;
+    }
+</style>
+
+@if (SessionClass.TipKorisnika == "K")
+{
+    <form method="post">
+        <div class="container register-form">
+            <div class="form">
+                <div class="note">
+                    <p>Vrati knjigu</p>
+                </div>
+
+                <div class="form-content">
+
+                    <div class="form-group" style="text-align: center; font-size: 20px;">
+                        Da li ste sigurni da želite da otkažete iznajmljivanje ove knjige?
+                    </div>
+
+                    <div style="text-align:center">
+                        <button type="submit" class="btnSubmit">Da</button>
+                        <a asp-page="./RezervacijaSve" class="btn btnSubmit">Ne</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+}
+else if (SessionClass.TipKorisnika == "A")
+{
+    <div class="alert alert-danger" role="alert" style="text-align: center;">
+        <i class="fas fa-exclamation-triangle"></i> Morate biti prijavljeni kao korisnik<i class="fas fa-exclamation-triangle"></i>
+    </div>
+}
+else
+{
+    <div class="alert alert-danger" role="alert" style="text-align: center;">
+        <i class="fas fa-exclamation-triangle"></i> Niste prijavljeni, molimo vas prijavite se.<i class="fas fa-exclamation-triangle"></i>
+    </div>
+}

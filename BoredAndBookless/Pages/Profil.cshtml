@@ -1,0 +1,41 @@
+﻿@page
+@model BoredAndBookless.Pages.ProfilModel
+@{
+}
+
+<style>
+    body {
+        background-color: #FAF5EB;
+    }
+</style>
+
+@if (SessionClass.TipKorisnika == "K")
+{
+
+    <div style="text-align: center; border: 3px solid #56493E; width:50%; align-items:center; justify-content:center; margin-top:10%; margin-left:25%;">
+        <br />
+        <div>
+            <h3 class="title" style="color: #56493E;">@Model.TrenutniKorisnik.Ime  @Model.TrenutniKorisnik.Prezime</h3>
+        </div>
+        <br />
+        <hr class="my-2" />
+        <div>
+            <p style="color: #56493E;"><strong>Korisnicko ime: </strong> @Model.TrenutniKorisnik.Username </p>
+            <p style="color: #56493E;"><strong>Emile: </strong> @Model.TrenutniKorisnik.Email </p>
+            <p style="color: #56493E;"><strong>Broj telefona: </strong> @Model.TrenutniKorisnik.Broj</p>
+        </div>
+        <hr class="my-2" />
+        <br />
+        <div>
+            <a class="btnSubmit" asp-page="./ProfilIzmeni" asp-route-id="@Model.TrenutniKorisnik.Id" style="color: #FAF5EB"> Izmeni <i class="fas fa-edit"></i></a>
+        </div>
+        <br />
+    </div>
+}
+else if (SessionClass.TipKorisnika == "A")
+{
+    <div class="alert alert-danger" role="alert" style="text-align: center;"><i class="fas fa-exclamation-triangle"></i> Morate biti prijavljeni kao korisnik<i class="fas fa-exclamation-triangle"></i></div> }
+else
+{
+    <div class="alert alert-danger" role="alert" style="text-align: center;"><i class="fas fa-exclamation-triangle"></i> Niste prijavljeni, molimo vas prijavite se.<i class="fas fa-exclamation-triangle"></i></div>
+}

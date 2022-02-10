@@ -1,0 +1,160 @@
+﻿@page
+@model BoredAndBookless.Pages.RezervacijaSveModel
+@{
+    ViewData["Title"] = "Rezervacije";
+}
+
+<style>
+    body {
+        background-color: #FAF5EB;
+    }
+</style>
+
+<div class="text-center">
+    <h1 style="color: #56493E;"> Rezervacije </h1>
+</div>
+<br />
+
+@if (SessionClass.TipKorisnika != null)
+{
+    <div>
+        <table class="table table-bordered">
+            <thead class="zaglavlje">
+                @*<th class="zaglavlje">ID rezervacije</th>*@
+            <th class="zaglavlje">Biblioteka</th>
+            <th class="zaglavlje">Grad</th>
+            <th>Knjiga</th>
+            @if (SessionClass.TipKorisnika == "A")
+            {
+                <th>Korisnik</th>
+            }
+            <th>Datum iznajmljivanja</th>
+            <th>Datum vracanja</th>
+            @if (SessionClass.TipKorisnika == "K")
+            {
+                <th> </th>
+            }
+            </thead>
+            <tbody class="teloTabele">
+                <form method="get">
+
+                    @if (SessionClass.TipKorisnika == "A")
+                    {@foreach (var rezervacija in Model.SveRezervacije)
+                        {
+                        <tr class="teloTabele">
+                            @*<td>@rezervacija.Id</td>*@
+
+                            <td>
+                                @foreach (var knjiga in Model.SveKnjige)
+                                {
+                                    foreach (var biblioteka in Model.SveBiblioteke)
+                                    {
+                                        @if ((@rezervacija.Knjiga.Id) == (@knjiga.Id) && (biblioteka.Id) == (knjiga.Biblioteka.Id))
+                                        {
+                                            @biblioteka.Naziv
+                                        }
+                                    }
+                                }
+                            </td>
+
+                            <td>
+                                @foreach (var knjiga in Model.SveKnjige)
+                                {
+                                    foreach (var biblioteka in Model.SveBiblioteke)
+                                    {
+                                        @if ((@rezervacija.Knjiga.Id) == (@knjiga.Id) && (biblioteka.Id) == (knjiga.Biblioteka.Id))
+                                        {
+                                            @biblioteka.Grad
+                                        }
+                                    }
+                                }
+                            </td>
+
+                            <td>
+                                @foreach (var knjiga in Model.SveKnjige)
+                                {
+                                    @if ((@rezervacija.Knjiga.Id) == (knjiga.Id))
+                                    {
+                                        @knjiga.Naziv
+                                    }
+                                }
+                            </td>
+
+                            <td>
+                                @foreach (var korisnik in Model.SviKorisnici)
+                                {
+                                    @if ((@rezervacija.Korisnik.Id) == (korisnik.Id))
+                                    {
+                                        @korisnik.Ime<br /> @korisnik.Prezime
+
+                                    }
+                                }
+                            </td>
+
+                            <td> @Convert.ToString(string.Format("{0:dd/MM/yyyy}", @rezervacija.DatumUzimanja))</td>
+
+                            <td> @Convert.ToString(string.Format("{0:dd/MM/yyyy}", @rezervacija.DatumVracanja))</td>
+                        </tr>
+                    }
+                }
+                    @if (SessionClass.TipKorisnika == "K")
+                    {
+                        @foreach (var rezervacija in Model.MojeRezervacije)
+                        {
+                            <tr class="teloTabele">
+                                @*<td>@rezervacija.Id</td>*@
+
+                                <td>
+                                    @foreach (var knjiga in Model.SveKnjige)
+                                    {
+                                        foreach (var biblioteka in Model.SveBiblioteke)
+                                        {
+                                            @if ((@rezervacija.Knjiga.Id) == (@knjiga.Id) && (biblioteka.Id) == (knjiga.Biblioteka.Id))
+                                            {
+                                                @biblioteka.Naziv
+                                            }
+                                        }
+                                    }
+                                </td>
+
+                                <td>
+                                    @foreach (var knjiga in Model.SveKnjige)
+                                    {
+                                        foreach (var biblioteka in Model.SveBiblioteke)
+                                        {
+                                            @if ((@rezervacija.Knjiga.Id) == (@knjiga.Id) && (biblioteka.Id) == (knjiga.Biblioteka.Id))
+                                            {
+                                                @biblioteka.Grad
+                                            }
+                                        }
+                                    }
+                                </td>
+
+                                <td>
+                                    @foreach (var knjiga in Model.SveKnjige)
+                                    {
+                                        @if ((@rezervacija.Knjiga.Id) == (knjiga.Id))
+                                        {
+                                            @knjiga.Naziv
+                                        }
+                                    }
+                                </td>
+                                <td> @Convert.ToString(string.Format("{0:dd/MM/yyyy}", @rezervacija.DatumUzimanja))</td>
+
+                                <td> @Convert.ToString(string.Format("{0:dd/MM/yyyy}", @rezervacija.DatumVracanja))</td>
+
+                                <td><a asp-page="./RezervacijaOtkazi" asp-route-id="@rezervacija.Id" style="color: #56493E;">Otkazi iznajmljivanje knjige <i class="fas fa-calendar-times"></i></a></td>
+                            </tr>
+                        }
+                    }
+                    </form>
+                </tbody>
+            </table>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-danger" role="alert" style="text-align: center;">
+            <i class="fas fa-exclamation-triangle"></i> Morate biti ulogovani da biste videli rezervacije. <i class="fas fa-exclamation-triangle"></i>
+        </div>
+    }

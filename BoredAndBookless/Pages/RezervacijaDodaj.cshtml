@@ -1,0 +1,51 @@
+﻿@page
+@model BoredAndBookless.Pages.RezervacijaDodajModel
+@{
+    ViewData["Title"] = "Iznajmi knjigu";
+}
+
+<style>
+    body {
+        background-color: #E6E5E5;
+    }
+</style>
+
+@if (SessionClass.TipKorisnika == "K")
+{
+    <form method="post">
+        <div class="container register-form">
+            <div class="form">
+                <div class="note">
+                    <p>Iznajmljivanje knjige: @Model.OvaKnjiga.Naziv</p>
+                </div>
+
+                <div class="form-content">
+
+                    <div class="form-group">
+                        <input type="date" min="@Model.DanasnjiDatum" class="form-control" placeholder="Datum iznajmljivanja" onfocus="(this.type='date')" onblur="(this.type='text')" asp-for="RezervacijaKnjige.DatumUzimanja" required autofocus />
+                    </div>
+                    <div class="form-group">
+                        <input type="date" min="@Model.DanasnjiDatum" class="form-control" asp-for="RezervacijaKnjige.DatumVracanja" onfocus="(this.type='date')" onblur="(this.type='text')" placeholder="Datum vracanja" required autofocus />
+                    </div>
+
+                    <div style="text-align:center">
+                        <button type="submit" class="btnSubmit">Iznajmi knjigu</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+}
+else if (SessionClass.TipKorisnika == "A")
+{
+    <div class="alert alert-danger" role="alert" style="text-align: center;"><i class="fas fa-exclamation-triangle"></i> Morate biti prijavljeni kao korisnik<i class="fas fa-exclamation-triangle"></i></div>
+}
+else
+{
+    <div class="alert alert-danger" role="alert" style="text-align: center;"><i class="fas fa-exclamation-triangle"></i> Niste prijavljeni, molimo vas prijavite se.<i class="fas fa-exclamation-triangle"></i></div>
+}
+
+@if (@Model.NeuspesnaRezervacija == 1)
+{
+    <div class="alert alert-danger" role="alert" style="text-align: center;"><i class="fas fa-exclamation-triangle"></i> Datum vracanja ne može biti manji od datuma iznajmljivanja. <i class="fas fa-exclamation-triangle"></i></div>
+}

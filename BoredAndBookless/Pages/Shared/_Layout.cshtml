@@ -1,0 +1,91 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3" style="background-color: #FAF5EB">
+            <div class="container">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <a asp-area="" asp-page="/Index">
+                    <img src="images/Logo3.png" style="height:90px" class="img-fluid">
+                </a>
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                    <ul class=" nav navbar-right navbar-nav">
+                        @if (SessionClass.TipKorisnika != "" && SessionClass.SessionId != null)
+                        {
+                            <li class="nav-item dropdown no-arrow">
+                                <a class="nav-link dropdown-toggle" href="#" id="@SessionClass.SessionId" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span class="mr-2 d-none d-lg-inline text-gray-600 small">@SessionClass.ImeKorisnika</span>
+                                    <i class="fa fa-user" aria-hidden="true"></i>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="@SessionClass.SessionId">
+                                    <a class="nav-link text-dark" asp-area="" asp-page="/Odjava">Odjavi se <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i></a>
+                                    @if (SessionClass.TipKorisnika == "K")
+                                    {
+                                        <hr class="my-2" />
+                                        <a class="nav-link text-dark" asp-area="" asp-page="/Profil">Profil </a>
+                                    }
+                                    <hr class="my-2" />
+                                    <a class="nav-link text-dark" asp-area="" asp-page="/BibliotekaSve">Biblioteke </a>
+                                    <hr class="my-2" />
+                                    <a class="nav-link text-dark" asp-area="" asp-page="/RezervacijaSve">Rezervacije </a>
+                                    <hr class="my-2" />
+                                    <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Kontakt </a>
+
+                                </div>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-page="/Registracija">Registruj se   <i class="fas fa-user-plus"></i></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-page="/Prijava">Prijavi se   <i class="fas fa-sign-in-alt"></i></a>
+                            </li>
+                            <li class="nav-item dropdown no-arrow">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+                                    <span class=" mr-2 d-none d-lg-inline  text-dark">Usluge</span>
+                                    <i class="fas fa-plus-square"></i>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" style="background-color: #FAF5EB">
+                                    <a class="nav-link text-dark" asp-area="" asp-page="/BibliotekaSve">Biblioteke </a>
+                                    <hr class="my-2" />
+                                    <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Kontakt </a>
+                                </div>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody() 
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted" style="background: #FAF5EB">
+        <div class="container" style="text-align:center">
+            &copy;  2022  BoredAndBookless
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="https://kit.fontawesome.com/0258ae30ea.js" crossorigin="anonymous"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

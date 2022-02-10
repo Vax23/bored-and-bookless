@@ -1,0 +1,38 @@
+﻿@page
+@model BoredAndBookless.Pages.KnjigaJednaModel
+@{
+    ViewData["Title"] = "Knjiga";
+}
+
+
+<style>
+    body {
+        background-color: #E6E5E5;
+    }
+</style>
+
+<nav aria-label="Page navigation">
+    <ul class="pagination">
+        <li class="page-item btnSubmit"><a class="btnSubmit" asp-page="./BibliotekaSve"><i class='fas fa-arrow-circle-left'></i> Vrati se na biblioteke</a></li>
+    </ul>
+</nav>
+
+<div class="centriraj" style="border-radius: 1rem;">
+    <div class="card" style="width: 30rem; border-radius: 1rem; background-color: #FAF5EB;">
+        <img src="images/@Model.TrenutnaKnjiga.Slika" class="card-img-top" alt="..." style="border-radius: 1rem;">
+        <div class="card-body" style="background-color: #FAF5EB; border-radius: 1rem;">
+            <h3 class="card-title" style="color: #56493E;">Knjiga: @Model.TrenutnaKnjiga.Naziv</h3>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item" style="background-color: #FAF5EB; color: #56493E; font-size: 20px; ">Autor: @Model.TrenutnaKnjiga.Autor</li>
+            <li class="list-group-item" style="background-color: #FAF5EB; color: #56493E; font-size: 20px; ">Žanr: @Model.TrenutnaKnjiga.Zanr</li>
+            <li class="list-group-item" style="background-color: #FAF5EB; color: #56493E; font-size: 20px; "> @Model.TrenutnaKnjiga.Opis</li>
+        </ul>
+        @if (SessionClass.TipKorisnika == "K")
+        {
+            <div class="card-body" style="background-color: #FAF5EB; border-radius: 1rem; color: #56493E; font-size: 20px;">
+                <a class="btnSubmit" asp-route-id="@Model.TrenutnaKnjiga.Id" asp-page="./RezervacijaDodaj">Iznajmi knjigu</a>
+            </div>
+        }
+    </div>
+</div>

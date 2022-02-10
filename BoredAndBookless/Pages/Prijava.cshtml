@@ -1,0 +1,47 @@
+﻿@page
+@model BoredAndBookless.Pages.PrijavaModel
+@{
+    ViewData["Title"] = "Prijava";
+}
+
+<style>
+    body {
+        background-color: #56493E;
+    }
+</style>
+
+<div class="container login-container">
+    <div class="row">
+        <div class="col-md-6 login-form-2">
+            <form method="post">
+                <h3 style="color: #56493E;">Prijavi se</h3>
+                <div class="forma-prijava" style="padding:5%;">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Korisničko ime" asp-for="TrenutniKorisnik.Username" required autofocus />
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" placeholder="Lozinka" asp-for="TrenutniKorisnik.Password" required />
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" class="btnSubmit" value="Prijavi se" />
+                    </div>
+                </div>
+                <hr class="my-2" />
+                <div style="text-align:center">
+                    <a style="color: #56493E" asp-page="./Registracija">Registruj se   <i class="fas fa-user-plus"></i></a>
+                </div>
+            </form>
+            @if (Model.Session == -1)
+            {
+                <div class="prijava">
+                    <div class="alert alert-danger" role="alert" style="text-align:center;">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        Uneli ste pogresno korisnicko ime ili lozinku.
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,25 @@
+﻿@page
+@model BoredAndBookless.Pages.OdjavaModel
+@{
+    ViewData["Title"] = "Odjava";
+}
+
+<style>
+    body {
+        background-color: #56493E;
+    }
+</style>
+
+<div class="container login-container">
+    <div class="row">
+        <div class="col-md-6 login-form-2">
+            <form method="post">
+                <h3 style="color: #56493E;">Da li ste sigurni da zelite da se odjavite?</h3>
+                <div class="form-group" style="padding:5%">
+                    <input type="submit" class="btnSubmit" value="Odjavi se" />
+                    <a asp-page="./Index" class="btn btnSubmit">Ne</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,66 @@
+﻿@page
+@model BoredAndBookless.Pages.RegistracijaModel
+@{
+    ViewData["Title"] = "Registracija";
+}
+
+<style>
+    body {
+        background-color: #FAF5EB;
+    }
+</style>
+
+<form method="post">
+    <div class="container register">
+        <div class="row">
+            <div class="col-md-3 register-left">
+                <img src="images/Logo3.png" />
+                <h3>Your dream book</h3>
+                <p>So much to Read. So much to Know!</p>
+            </div>
+            <div class="col-md-9 register-right">
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                        <h3 class="register-heading">Registruj se</h3>
+                        <div class="row register-form">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Ime" asp-for="NoviKorisnik.Ime" required autofocus />
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Prezime" asp-for="NoviKorisnik.Prezime" required />
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Email" asp-for="NoviKorisnik.Email" required />
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Broj telefona" asp-for="NoviKorisnik.Broj" required />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Korisničko ime" asp-for="NoviKorisnik.Username" required />
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" class="form-control" placeholder="Lozinka" asp-for="NoviKorisnik.Password" required />
+                                </div>
+                                <input type="submit" class="btnRegister" value="Registruj se" />
+                            </div>
+                        </div>
+                        <div class="centriraj">
+                            <a style="color: #56493E" asp-page="./Prijava">Već imaš nalog?</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+@if (Model.PostojiVec)
+{
+    <div class="alert alert-danger" role="alert" style="text-align: center;">
+        <i class="fas fa-exclamation-triangle"></i>
+        Korisnik sa tim korisničkim imenom već postoji.
+        <i class="fas fa-exclamation-triangle"></i>
+    </div>
+}

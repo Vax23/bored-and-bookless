@@ -1,0 +1,56 @@
+﻿@page
+@model BoredAndBookless.Pages.BibliotekaIzmeniModel
+@{
+    ViewData["Title"] = "Izmena biblioteke";
+}
+
+<style>
+    body {
+        background-color: #E6E5E5;
+    }
+</style>
+
+@if (SessionClass.TipKorisnika == "A")
+{
+    <form method="post">
+
+        <nav aria-label="Page navigation">
+            <ul class="pagination">
+                <li class="page-item btnSubmit"><a class="btnSubmit" asp-page="./BibliotekaSve"><i class='fas fa-arrow-circle-left'></i> Vrati se nazad</a></li>
+            </ul>
+        </nav>
+
+        <div class="container register-form">
+            <div class="form">
+                <div class="note">
+                    <p>Izmeni biblioteku</p>
+                </div>
+
+                <div class="form-content">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Naziv" asp-for="TrenutnaBiblioteka.Naziv" required autofocus />
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Grad" asp-for="TrenutnaBiblioteka.Grad" required />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Opis" asp-for="TrenutnaBiblioteka.Opis" required />
+                            </div>
+                        </div>
+                    </div>
+                    <div style="text-align:center">
+                        <button type="submit" class="btnSubmit">Sačuvaj izmene</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+}
+else
+{
+    <div class="alert alert-danger" role="alert" style="text-align: center;"><i class="fas fa-exclamation-triangle"></i> Nemate pristup ovoj stranici, samo admin može da menja biblioteke. <i class="fas fa-exclamation-triangle"></i></div>
+}

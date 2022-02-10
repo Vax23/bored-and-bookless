@@ -1,0 +1,66 @@
+﻿@page
+@model BoredAndBookless.Pages.KnjigaDodajModel
+@{
+    ViewData["Title"] = "Dodavanje knjige";
+}
+
+<style>
+    body {
+        background-color: #E6E5E5;
+    }
+</style>
+
+@if (SessionClass.TipKorisnika == "A")
+{
+    <form method="post">
+        <input type="hidden" asp-for="@Model.PostojiVec" />
+
+        @if (Model.PostojiVec != null && Model.PostojiVec != 0)
+        {
+            <div class="alert alert-danger" role="alert" style="text-align: center;"><i class="fas fa-exclamation-triangle"></i> Već postoji knjiga sa tim nazivom. <i class="fas fa-exclamation-triangle"></i></div>
+        }
+
+        <div class="container register-form">
+            <div class="form">
+                <div class="note">
+                    <p>Nova knjiga</p>
+                </div>
+
+                <div class="form-content">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Naziv" asp-for="NovaKnjiga.Naziv" required autofocus />
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Žanr" asp-for="NovaKnjiga.Zanr" required />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Autor" asp-for="NovaKnjiga.Autor" required />
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Opis" asp-for="NovaKnjiga.Opis" required />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <div class="form-control">
+                                    Slika   <input type="file" asp-for="NovaKnjiga.Slika" required />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="text-align:center">
+                        <button type="submit" class="btnSubmit">Dodaj novu knjigu</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+}
+else
+{
+    <div class="alert alert-danger" role="alert" style="text-align: center;"><i class="fas fa-exclamation-triangle"></i> Nemate pristup ovoj stranici, samo admin može da dodaje knjige. <i class="fas fa-exclamation-triangle"></i></div>
+}
