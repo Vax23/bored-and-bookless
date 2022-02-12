@@ -1,0 +1,3 @@
+db.korisnik.insertOne({Username: "admin", Password: "admin", Tip:"A"})
+
+db.biblioteka.insertOne({Naziv: "Stevan Sremac", Grad: "Nis", Opis:"Narodna biblioteka 'Stevan Sremac' jedna je od najstarijih kulturnih ustanova u Gradu i prva javna biblioteka u Juznoj Srbiji.Ovo je savremena institucija koja raspolaze fondom od preko 300 000 publikacija. Glavni zadatak Biblioteke je uspesno prilagodjavanje novim tehnoloskim dostignucima kako bi zadovoljila potrebe modernog korisnika informatickog doba.", Slika:"bib1.png"})
